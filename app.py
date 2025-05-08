@@ -2,12 +2,14 @@ import streamlit as st
 import sklearn
 import joblib
 
-model = joblib.load('Sentiment_Analyser')
+model = joblib.load('Sentiment_Analyser.pkl')
 st.title('Sentiment Analyser')
 ip = st.text_input('Enter your review: ')
-op = model.predict([ip])
-ans=op[0]
+#op = model.predict([ip])
+#ans=op[0]
 if st.button('Predict'):
+    op = model.predict([ip])
+    ans=op[0]
   if ans == 'Positive':
       st.success("Positive :)")
   elif ans == 'Negative':
