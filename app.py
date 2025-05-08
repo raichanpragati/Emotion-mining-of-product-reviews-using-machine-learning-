@@ -8,8 +8,8 @@ ip = st.text_input('Enter your review: ')
 #op = model.predict([ip])
 #ans=op[0]
 if st.button('Predict'):
-    op = model.predict([ip])
-    ans=op[0]
+  op = model.predict([ip])
+  ans=op[0]
   if ans == 'Positive':
       st.success("Positive :)")
   elif ans == 'Negative':
