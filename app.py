@@ -2,7 +2,7 @@ import streamlit as st
 import sklearn
 import joblib
 
-model = joblib.load('Sentiment_Analyser(1).pkl')
+model = joblib.load('Sentiment_Analyser.pkl')
 st.title('Sentiment Analyser')
 ip = st.text_input('Enter your review: ')
 #op = model.predict([ip])
