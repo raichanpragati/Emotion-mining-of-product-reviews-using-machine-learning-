@@ -1,31 +1,21 @@
 import streamlit as st
 import joblib
 
-# Load model and vectorizer
-model = joblib.load('Sentiment_Analyser')
-vectorizer = joblib.load('Sentiment_Analyser.pkl')  # assuming you saved it during training
+# Load your trained pipeline (vectorizer + model inside)
+model = joblib.load('Sentiment_Analyser.pkl')
 
-st.title('Sentiment Analyser')
+# Streamlit UI
+st.title('Sentiment Analyser 🎭')
 
-ip = st.text_input('Enter your review: ')
+ip = st.text_input('Enter your review:')
 
 if st.button('Predict'):
-    if ip:
-        # Transform the input text
-        ip_vector = vectorizer.transform([ip])
-
-        # Make prediction
-        op = model.predict(ip_vector)
+    if ip.strip() != "":
+        # Directly predict using the pipeline
+        op = model.predict([ip])
         ans = op[0]
 
-        # Display result
-        if ans == 'Positive':
-            st.success("Positive 😊")
-        elif ans == 'Negative':
-            st.error("Negative 😞")
-        elif ans == 'Neutral':
-            st.warning("Neutral 😐")
-        else:
-            st.info(f"Predicted: {ans}")
+        # Display with emoji
+        st.subheader(f"Prediction: {ans}")
     else:
         st.warning("Please enter a review to predict.")
