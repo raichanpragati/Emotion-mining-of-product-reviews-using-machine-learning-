@@ -3,7 +3,7 @@ import joblib
 
 # Load model and vectorizer
 model = joblib.load('Sentiment_Analyser')
-vectorizer = joblib.load('vectorizer.pkl')  # assuming you saved it during training
+vectorizer = joblib.load('Sentiment_Analyser.pkl')  # assuming you saved it during training
 
 st.title('Sentiment Analyser')
 
