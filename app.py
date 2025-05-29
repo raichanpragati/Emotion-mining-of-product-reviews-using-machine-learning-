@@ -3,7 +3,7 @@ import streamlit as st
 import joblib
 
 # Load your trained pipeline (vectorizer + model inside)
-model = joblib.load('Sentiment_Analyser.pkl')
+model = joblib.load('Sentiment_Analyser')
 
 # Streamlit UI
 st.title('Sentiment Analyser 🎭')
