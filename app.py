@@ -1,21 +1,74 @@
+
+
+        # Display with emoji
 import streamlit as st
 import joblib
+from PIL import Image
 
-# Load your trained pipeline (vectorizer + model inside)
-model = joblib.load('Sentiment_Analyser.pkl')
+# Page config
+st.set_page_config(page_title="Sentiment Analyser 🎭", page_icon="🎭", layout="centered")
 
-# Streamlit UI
-st.title('Sentiment Analyser 🎭')
+# Custom CSS for styling
+st.markdown("""
+    <style>
+        .main {
+            background-color: #f9f9f9;
+        }
+        .title {
+            color: #2c3e50;
+            font-size: 40px;
+            text-align: center;
+            font-weight: bold;
+        }
+        .footer {
+            text-align: center;
+            color: #888;
+            padding-top: 20px;
+        }
+        .prediction {
+            font-size: 28px;
+            text-align: center;
+            color: #2ecc71;
+            font-weight: bold;
+        }
+        .warning {
+            font-size: 18px;
+            color: #e74c3c;
+        }
+    </style>
+""", unsafe_allow_html=True)
 
-ip = st.text_input('Enter your review:')
+# Load trained model
+model = joblib.load('Sentiment_Analyser')
 
-if st.button('Predict'):
+# Title and description
+st.markdown('<p class="title">🎭 Sentiment Analyser</p>', unsafe_allow_html=True)
+st.markdown("##### 📊 Analyze customer reviews and see if they're **Positive**, **Negative**, or **Neutral** instantly!")
+
+# Input field
+ip = st.text_input('💬 Enter your product review here:')
+
+# Predict button
+if st.button('🔍 Predict Sentiment'):
     if ip.strip() != "":
-        # Directly predict using the pipeline
+        # Predict using the pipeline
         op = model.predict([ip])
         ans = op[0]
 
-        # Display with emoji
-        st.subheader(f"Prediction: {ans}")
+        # Emoji mapping
+        emoji_dict = {
+            'positive': '😊👍',
+            'negative': '😞👎',
+            'neutral': '😐'
+        }
+
+        emoji = emoji_dict.get(ans.lower(), '🤔')
+
+        # Display prediction
+        st.markdown(f'<p class="prediction">✨ Prediction: {ans.capitalize()} {emoji}</p>', unsafe_allow_html=True)
+
     else:
-        st.warning("Please enter a review to predict.")
+        st.markdown('<p class="warning">⚠️ Please enter a review to predict.</p>', unsafe_allow_html=True)
+
+# Footer
+st.markdown('<p class="footer">Made with ❤️ by Pragati Rai</p>', unsafe_allow_html=True)
