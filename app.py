@@ -39,7 +39,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Load trained model
-model = joblib.load('Sentiment_Analyser')
+model = joblib.load('Sentiment_Analyser.pkl')
 
 # Title and description
 st.markdown('<p class="title">🎭 Sentiment Analyser</p>', unsafe_allow_html=True)
