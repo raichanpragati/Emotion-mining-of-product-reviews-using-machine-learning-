@@ -1,36 +1,22 @@
+
 import streamlit as st
 import joblib
-import re
-import nltk
-from nltk.corpus import stopwords
 
-nltk.download('stopwords')
-stop_words = stopwords.words('english')
-
-REPLACE_BY_SPACE_RE = re.compile('[/(){}—\[\]|@,;‘?|।!–’-]')
-
-def clean_text(sample):
-    if not isinstance(sample, str):
-        return ""
-    sample = sample.lower()
-    sample = sample.replace("<br /><br />", "")
-    sample = REPLACE_BY_SPACE_RE.sub(' ', sample)
-    sample = re.sub("[^a-z]+", " ", sample)
-    sample = sample.split()
-    sample = [word for word in sample if word not in stop_words]
-    return " ".join(sample)
-
-# Load the trained model once here
+# Load your trained pipeline (vectorizer + model inside)
 model = joblib.load('Sentiment_Analyser.pkl')
 
+# Streamlit UI
 st.title('Sentiment Analyser 🎭')
 
 ip = st.text_input('Enter your review:')
 
 if st.button('Predict'):
     if ip.strip() != "":
-        cleaned_ip = clean_text(ip)
-        prediction = model.predict([cleaned_ip])
-        st.subheader(f"Prediction: {prediction[0]}")
+        # Directly predict using the pipeline
+        op = model.predict([ip])
+        ans = op[0]
+
+        # Display with emoji
+        st.subheader(f"Prediction: {ans}")
     else:
         st.warning("Please enter a review to predict.")
