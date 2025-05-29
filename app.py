@@ -6,7 +6,7 @@ import plotly.express as px
 # Load the trained model
 @st.cache_resource
 def load_model():
-    return joblib.load('sentiment_analyser')
+    return joblib.load('Sentiment_Analyser.pkl')
 
 model = load_model()
 
