@@ -39,7 +39,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Load trained model
-model = joblib.load('Sentiment_Analyser.pkl')
+model = joblib.load('Sentiment_Analyser')
 
 # Title and description
 st.markdown('<p class="title">🎭 Sentiment Analyser</p>', unsafe_allow_html=True)
@@ -71,4 +71,34 @@ if st.button('🔍 Predict Sentiment'):
         st.markdown('<p class="warning">⚠️ Please enter a review to predict.</p>', unsafe_allow_html=True)
 
 # Footer
-st.markdown('<p class="footer">Made with ❤️ by Pragati Rai</p>', unsafe_allow_html=True)
+#st.markdown('<p class="footer">Made with ❤️ by Pragati Rai</p>', unsafe_allow_html=True)
+st.markdown("""
+    <style>
+        .footer {
+            text-align: center;
+            color: #888;
+            padding-top: 20px;
+            font-size: 16px;
+        }
+        .footer span {
+            color: #e25555;
+            font-size: 18px;
+            animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        .footer a {
+            color: #f63366;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+
+    <p class="footer">Made with <span>❤️</span> by <a href="https://www.linkedin.com/in/pragati-rai-518209237/" target="_blank">Pragati Rai</a></p>
+""", unsafe_allow_html=True)
